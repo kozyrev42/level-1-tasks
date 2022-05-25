@@ -35,6 +35,7 @@
                         <div class="panel-content">
                             <div class="panel-content">
                                 <div class="bg-warning-100 border border-warning rounded">
+
                                     <div class="input-group p-2 mb-0">
                                         <input type="text" class="form-control form-control-lg shadow-inset-2 bg-warning-50 border-warning" id="js-list-msg-filter" placeholder="Filter list">
                                         <div class="input-group-append">
@@ -43,19 +44,39 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
+                                    <?php
+                                        /* формируем многомерный массив, вложенный массив ассоциативный */
+                                        $items = [
+                                            [
+                                                "data-filter-tags" => "reports file",
+                                                "content" => "Reports"
+                                            ],
+                                            [
+                                                "data-filter-tags" => "analytics graphs",
+                                                "content" => "Analytics"
+                                            ],
+                                            [
+                                                "data-filter-tags" => "export download",
+                                                "content" => "Export"
+                                            ],
+                                            [
+                                                "data-filter-tags" => "storage",
+                                                "content" => "Storage"
+                                            ]
+                                        ]
+                                    ?>
+
                                     <ul id="js-list-msg" class="list-group px-2 pb-2 js-list-filter">
+                                    
+                                    
+                                    <?php foreach ($items as $item):?>
+                                        <!-- используем нужные данные из ассоциативного массива, по назначению-->
                                         <li class="list-group-item">
-                                            <span data-filter-tags="reports file">Reports</span>
+                                            <span data-filter-tags="<?php echo $item['data-filter-tags'];?>"><?php echo $item['content'];?></span>
                                         </li>
-                                        <li class="list-group-item">
-                                            <span data-filter-tags="analytics graphs">Analytics</span>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <span data-filter-tags="export download">Export</span>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <span data-filter-tags="storage">Storage</span>
-                                        </li>
+                                    <?php endforeach;?>
+                                        
                                     </ul>
                                     <div class="filter-message js-filter-message mt-0 fs-sm"></div>
                                 </div>
