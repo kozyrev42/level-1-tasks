@@ -36,25 +36,43 @@
                             <div class="panel-tag">
                                 <p>Сформируйте массив данных и выведите полностью альбом.</p>
                             </div>
+
+                            <?php
+                            /* формируем многомерный массив, вложенный массив ассоциативный */
+                            $images = [
+                                [
+                                    "images-href" => "img/demo/gallery/21.jpg",
+                                    "images-src" => "img/demo/gallery/thumb/21.jpg"
+                                ],
+                                [
+                                    "images-href" => "img/demo/gallery/22.jpg",
+                                    "images-src" => "img/demo/gallery/thumb/22.jpg"
+                                ],
+                                [
+                                    "images-href" => "img/demo/gallery/23.jpg",
+                                    "images-src" => "img/demo/gallery/thumb/23.jpg"
+                                ],
+                                [
+                                    "images-href" => "img/demo/gallery/24.jpg",
+                                    "images-src" => "img/demo/gallery/thumb/24.jpg"
+                                ],
+                                [
+                                    "images-href" => "img/demo/gallery/25.jpg",
+                                    "images-src" => "img/demo/gallery/thumb/25.jpg"
+                                ],
+                                [
+                                    "images-href" => "img/demo/gallery/26.jpg",
+                                    "images-src" => "img/demo/gallery/thumb/26.jpg"
+                                ]
+                            ]
+                            ?>
+
                             <div id="js-lightgallery">
-                                <a class="" href="img/demo/gallery/21.jpg">
-                                    <img class="img-responsive" src="img/demo/gallery/thumb/21.jpg" alt="image">
-                                </a>
-                                <a class="" href="img/demo/gallery/22.jpg">
-                                    <img class="img-responsive" src="img/demo/gallery/thumb/22.jpg" alt="image">
-                                </a>
-                                <a class="" href="img/demo/gallery/23.jpg">
-                                    <img class="img-responsive" src="img/demo/gallery/thumb/23.jpg" alt="image">
-                                </a>
-                                <a class="" href="img/demo/gallery/24.jpg">
-                                    <img class="img-responsive" src="img/demo/gallery/thumb/24.jpg" alt="image">
-                                </a>
-                                <a class="" href="img/demo/gallery/25.jpg">
-                                    <img class="img-responsive" src="img/demo/gallery/thumb/25.jpg" alt="image">
-                                </a>
-                                <a class="" href="img/demo/gallery/26.jpg">
-                                    <img class="img-responsive" src="img/demo/gallery/thumb/26.jpg" alt="image">
-                                </a>
+                                <?php foreach ($images as $img):?>
+                                    <a class="" href="<?php echo $img['images-href'];?>">
+                                        <img class="img-responsive" src="<?php echo $img['images-src'];?>" alt="image">
+                                    </a>
+                                <?php endforeach;?>
                             </div>
                         </div>
                     </div>
