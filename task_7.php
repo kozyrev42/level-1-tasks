@@ -34,7 +34,7 @@
                 </div>
 
                 <?php
-                /* формируем многомерный массив, вложенный массив ассоциативный */
+                /* мое решения */
                 $links = [
                     [
                         "class" => "breadcrumb-item",
@@ -46,16 +46,50 @@
                     ],
                     [
                         "class" => "breadcrumb-item  active",
-                        "link" => "Функции",
+                        "link" => "Функции"
+                    ]
+                ];
+
+                /* массив для Второго решения решения */
+                $links2 = [
+                    [
+                        "title" => "Главная",
+                        "href" => "#",
+                        "is-link" => true
+                    ],
+                    [
+                        "title" => "PHP",
+                        "href" => "#",
+                        "is-link" => true
+                    ],
+                    [
+                        "title" => "Функции",
+                        "href" => "",
+                        "is-link" => false,
                     ]
                 ]
                 ?>
 
                 <div class="panel-container show">
                     <div class="panel-content">
+                        <!-- мое решение -->
                         <ol class="breadcrumb page-breadcrumb">
                             <?php foreach ($links as $link) : ?>
                                 <li class="<?php echo $link['class']; ?>"><?php echo $link['link']; ?></li>
+                            <?php endforeach; ?>
+                        </ol>
+
+                        <!-- второе решение -->
+                        <ol class="breadcrumb page-breadcrumb">
+                            <?php foreach ($links2 as $link) : ?>
+                                <?php if ($link['is-link']) : ?>
+                                    <!-- проверяем, является ли элемент ссылкой -->
+                                    <!-- если ссылка, то вывод в одном формате -->
+                                    <li class="breadcrumb-item"><a href="<?php echo $link['href']; ?>"><?php echo $link['title']; ?></a></li>
+                                <?php else : ?>
+                                    <!-- иначе, если не ссылка, то в другом формате -->
+                                    <li class="breadcrumb-item  active"><?php echo $link['title']; ?></li>
+                                <?php endif; ?>
                             <?php endforeach; ?>
                         </ol>
                     </div>
