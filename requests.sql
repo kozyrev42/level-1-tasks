@@ -59,3 +59,11 @@ VALUES
 Jacob, Thornton, @fat 
 Larry,	the Bird,	@twitter	  
 Larry the Bird,	Bird,	@twitter */
+
+
+/* ----------- 11 ------------------------------------ */
+CREATE TABLE `list-11` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `task` VARCHAR(100) NOT NULL,
+    PRIMARY KEY (id)
+) default charset utf8mb4;
