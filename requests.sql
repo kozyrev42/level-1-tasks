@@ -67,3 +67,11 @@ CREATE TABLE `list-11` (
     `task` VARCHAR(100) NOT NULL,
     PRIMARY KEY (id)
 ) default charset utf8mb4;
+
+/* -------------------  13  --------------------- */
+CREATE TABLE `users-13` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `email` VARCHAR(255) NOT NULL,
+    `password` VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+) default charset utf8mb4;
