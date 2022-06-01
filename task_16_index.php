@@ -1,6 +1,7 @@
 <?php
 session_start();
-// в бд используем таблицу users-13
+// используем таблицу из 13 задачи users-13
+// создать пользователя можно в 13 задаче
 // стартовая страница 
 ?>
 <!DOCTYPE html>
@@ -28,21 +29,25 @@ session_start();
     <div class="container">
         <div class="row">
             <!-- если сессия НЕ содержит пользователя -->
+            <?php if(empty($_SESSION['user'])):?>
             <div class="col-md-4">
                 <h2> Вы не авторизованы </h2>
                 <div>
                     <a href="task_16_auth_form.php" class="btn btn-info">Войти</a>
                 </div>
             </div>
+            <?php endif;?>
+
             <!-- если сессия содержит пользователя -->
             <!-- выводим емаил пользователя -->
+            <?php if(!empty($_SESSION['user'])):?>
             <div class="col-md-4">
-                <h2> Вы вошли как </h2>
+                <h2> Вы вошли как <?php echo $_SESSION['user']['email']?> </h2>
                 <div>
                     <a href="task_16_logout.php" class="btn btn-danger">Выйти</a>
                 </div>
             </div>
-
+            <?php endif;?>
         </div>
     </div>
 

@@ -1,10 +1,8 @@
-<?php
+<?php // обработчик формы авторизации
 session_start();
-// обработчик формы авторизации
 
 $email = $_POST['email'];
 $password = $_POST['password'];
-
 
 require_once('connect_bd.php');
 // проверка есть ли в базе емаил
@@ -16,11 +14,10 @@ $statement = $pdo->prepare($query);
 $statement -> execute(['email' => $email]);
 // $result - может содержать запись из таблицы
 $result = $statement->fetch(PDO::FETCH_ASSOC);
-//var_dump($result);
-// если данные пришли, значит такой емаил в бд есть, нужно перейти проверки пароля
 
-if (empty($result)) { // если $result пустой выполняем блок
-    // Ошибка в переменной Сессии true, то есть активна
+// проверяем, пришли ли данные по запросу
+if (empty($result)) { // если $result пустой, такого емаила нет, выполняем блок
+    // Ошибка в переменной Сессии true, передаём ошибку
     $_SESSION['error'] = true;
     // возращаемся к форме
     header ('location: task_16_auth_form.php');
@@ -28,23 +25,20 @@ if (empty($result)) { // если $result пустой выполняем бло
     exit;
 }
 
+// хэшировынный пароль из базы
+$hash_password=$result['password'];
 
+// проверяем соответствует-ли введеный пароль, хешу пароля из бд
+// результат записываем в $verify
+$verify=password_verify($password, $hash_password);
 
+// если $verify = false, значит пароли не равны, передаём ошибку
+if (!$verify) { 
+    $_SESSION['error'] = true;
+    header ('location: task_16_auth_form.php');
+    exit;
+}
 
-// запрос в бд, сравниваем пароли
-/* $query = "SELECT * FROM `users-13` WHERE email=:email";
-$statement = $pdo->prepare($query);
-$statement -> execute(['email' => $email]);
-$result = $statement->fetch(PDO::FETCH_ASSOC); */
-
-
-// пароли не равны, записываем в сессию Ошибку
-// возращаем на форму входа
-// прерываем сценарий
-// exit;
-
-
-// если всё хорошо
-// записывем в сессию емаил
-// возвращаем на главную
-// header ('location: task_16_index.php');
+// если проверки пройдены, записывем в сессию данные пользователя
+$_SESSION['user']=['email'=>$result['email'],'id'=>$result['id']];
+header ('location: task_16_index.php');
