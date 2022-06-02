@@ -75,3 +75,10 @@ CREATE TABLE `users-13` (
     `password` VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
 ) default charset utf8mb4;
+
+/* -------------------- 18 ------------------------- */
+CREATE TABLE `images-18` (
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `image` VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+) default charset utf8mb4;
