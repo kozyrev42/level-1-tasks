@@ -73,18 +73,24 @@
                         <div class="panel-content">
                             <div class="panel-content image-gallery">
                                 <div class="row">
-                                    <!-- картинки будем выводить циклом -->
-                                    <div class="col-md-3 image">
-                                        <img src="img/demo/gallery/1.jpg" style="width: 150px; height: 100px;">
-                                    </div>
 
+                                    <?php
+                                     require_once('connect_bd.php');
+                                     $query = 'SELECT * FROM `images-18`';
+ 
+                                     $statement = $pdo->prepare($query);
+ 
+                                     $statement->execute();
+ 
+                                     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+                                    ?>
+                                    <!-- картинки выводим циклом -->
+                                    <?php foreach ($result as $image) : ?>
                                     <div class="col-md-3 image">
-                                        <img src="img/demo/gallery/2.jpg" style="width: 150px; height: 100px;">
+                                        <img src="downloads/<?php echo $image['image']?>"
+                                            style="width: 150px; height: 100px;">
                                     </div>
-
-                                    <div class="col-md-3 image">
-                                        <img src="img/demo/gallery/3.jpg" style="width: 150px; height: 100px;">
-                                    </div>
+                                    <?php endforeach; ?>
 
                                 </div>
                             </div>
