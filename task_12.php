@@ -51,7 +51,7 @@
                                     // $result - будет false, если ответ придёт пустым
                                     ?>
                                     <?php if (!$result) : ?>
-                                        <!-- если ответ НЕ пустой, делаем запись в бд -->
+                                        <!-- если ответ содержит false, делаем запись в бд -->
                                         <?php
                                         // запрос, с меткой накоторую передадим переменную
                                         $query = "INSERT INTO `list-11` (`task`) VALUES (:task)";
@@ -65,7 +65,7 @@
                                     <?php else : ?>
                                         <!-- иначе, ответ не пустой, запись существует в бд, выводим ошибку -->
                                         <div class="alert alert-danger fade show" role="alert">
-                                            You should check in on some of those fields below.
+                                            Запись существует, введите новую запись
                                         </div> 
                                     <?php endif; ?>
                                 <?php endif; ?>
